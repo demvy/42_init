@@ -1,0 +1,1 @@
+We have to modify files /etc/hostname and /etc/hosts, then restart our network manager
