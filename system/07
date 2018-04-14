@@ -1,3 +1,1 @@
-#!/bin/bash
-
-ps -ef | grep "sshd" | head -n 1 |awk -F ' ' '{print $2}'
+pgrep sshd
