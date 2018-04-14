@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo du -h /var/* -d 0
