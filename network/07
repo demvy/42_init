@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dig slash16.org | grep -A 8 "ANSWER SECTION" | tail -n 7 | awk '{print $1" "$5}'
