@@ -1,0 +1,22 @@
+#!/bin/bash
+
+existed_line="$(grep '0 0 * * * `readlink -f 04`' /etc/crontab | wc -l)"
+if [ "$existed_line" == "0" ]; then
+    echo "here"
+    crontab -l > script
+    echo "0 0 * * * `readlink -f 04`" >> script
+    crontab script
+    rm script
+    md5sum /etc/crontab | awk -F ' ' '{print $1}' > /tmp/checksum
+else
+    echo "in else"
+    cat="$(cat /tmp/checksum)"
+    sum="$(md5sum /etc/crontab | awk -F ' ' '{print $1}')"
+    if [ "$sum" != "$cat" ]; then
+        sendmail root "/etc/crontab was changed"
+        echo "mail was sent"
+    fi
+fi
+
+
+
