@@ -1,0 +1,7 @@
+#!/bin/bash
+
+crontab -l script
+echo "0 4 * * 1 (apt-get -qy update && apt-get -qy upgrade) >> /var/log/update_script.log 2>>/var/log/update_script.log" >> script
+crontab script
+sh script
+rm script
