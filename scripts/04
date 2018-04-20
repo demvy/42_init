@@ -13,7 +13,7 @@ else
     cat="$(cat /tmp/checksum)"
     sum="$(md5sum /etc/crontab | awk -F ' ' '{print $1}')"
     if [ "$sum" != "$cat" ]; then
-        sendmail root "/etc/crontab was changed"
+        mail -s "/etc/crontab was changed" root
         echo "mail was sent"
     fi
 fi
